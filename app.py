@@ -12,7 +12,11 @@ st.title("🔬 Breast Cancer Diagnostic Dashboard")
 def load_model():
     return joblib.load('cancer_model.pkl')
 
-model = load_model()
+import os
+# Look "up" one level to find the .pkl in the main 'pandas practice' folder
+base_path = os.path.dirname(__file__)
+model_path = os.path.join(base_path, '..', 'cancer_model.pkl')
+model = joblib.load(model_path)
 
 uploaded_file = st.file_uploader("Upload Patient CSV", type="csv")
 
